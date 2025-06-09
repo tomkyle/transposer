@@ -1,0 +1,26 @@
+{
+  "name": "tomkyle-transposer",
+  "author": "Carsten Witt <tomkyle@posteo.de>",
+  "private": true,
+  "devDependencies": {
+    "chokidar-cli": "^3.0.0",
+    "npm-run-all": "^4.1.5"
+  },
+  "scripts": {
+
+    "watch": "npm-run-all -p watch:*",
+    "watch:src": "chokidar \"src/**/*.php\"          -c \"./vendor/bin/frt {path} && npm run phpstan {path} && npm run rector {path}\"",
+    "watch:tests": "chokidar \"tests/**/*.php\"      -c \"npm run phpunit {path}\"",
+
+    "phpcs"       : "./vendor/bin/php-cs-fixer fix --verbose --diff --dry-run",
+    "phpcs:apply" : "./vendor/bin/php-cs-fixer fix --verbose --diff",
+
+    "phpstan": "./vendor/bin/phpstan --no-progress analyse",
+
+    "rector": "./vendor/bin/rector process --dry-run",
+    "rector:apply": "./vendor/bin/rector process",
+
+    "phpunit": "./vendor/bin/phpunit --testdox",
+    "phpunit:short": "npm run phpunit -- --testdox --no-coverage"
+  }
+}
