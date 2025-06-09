@@ -1,5 +1,14 @@
 {
     "name": "tomkyle/transposer",
+    "description": "A PHP library for transposing arrays and objects.",
+    "license": "MIT",
+    "type": "library",
+    "keywords": [
+        "transpose",
+        "array",
+        "transpose array",
+        "array transpose"
+      ],
     "require": {
         "php": "^8.3"
     },
@@ -20,4 +29,5 @@
         "rector/rector": "^2.0",
         "phpstan/phpstan": "^2.1"
     }
+
 }
