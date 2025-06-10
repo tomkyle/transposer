@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * This file is part of tomkyle/transposer
+ *
+ * A PHP library for transposing arrays and objects.
+ */
+
 namespace tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -53,12 +59,12 @@ class IterableTransposerTest extends TestCase
         $data = [
             'Q1-2023' => [
                 'revenue' => 125000,
-                'orders' => 1250
+                'orders' => 1250,
             ],
             'Q2-2023' => [
                 'revenue' => 138000,
-                'orders' => 1380
-            ]
+                'orders' => 1380,
+            ],
         ];
 
         $transposer = new IterableTransposer('Metric');
@@ -68,13 +74,13 @@ class IterableTransposerTest extends TestCase
             'revenue' => [
                 'Metric' => 'revenue',
                 'Q1-2023' => 125000,
-                'Q2-2023' => 138000
+                'Q2-2023' => 138000,
             ],
             'orders' => [
                 'Metric' => 'orders',
                 'Q1-2023' => 1250,
-                'Q2-2023' => 1380
-            ]
+                'Q2-2023' => 1380,
+            ],
         ];
 
         $this->assertEquals($expected, $result);
@@ -86,12 +92,12 @@ class IterableTransposerTest extends TestCase
         $data = [
             'Q1-2023' => [
                 'revenue' => 125000,
-                'orders' => 1250
+                'orders' => 1250,
             ],
             'Q2-2023' => [
                 'revenue' => 138000,
-                'orders' => 1380
-            ]
+                'orders' => 1380,
+            ],
         ];
 
         $transposer = new IterableTransposer();
@@ -100,12 +106,12 @@ class IterableTransposerTest extends TestCase
         $expected = [
             'revenue' => [
                 'Q1-2023' => 125000,
-                'Q2-2023' => 138000
+                'Q2-2023' => 138000,
             ],
             'orders' => [
                 'Q1-2023' => 1250,
-                'Q2-2023' => 1380
-            ]
+                'Q2-2023' => 1380,
+            ],
         ];
 
         $this->assertEquals($expected, $result);
@@ -116,7 +122,7 @@ class IterableTransposerTest extends TestCase
     {
         $data = [
             'Q1-2023' => ['revenue' => 125000],
-            'Q2-2023' => ['revenue' => 138000]
+            'Q2-2023' => ['revenue' => 138000],
         ];
 
         $transposer = new IterableTransposer('Default');
@@ -126,8 +132,8 @@ class IterableTransposerTest extends TestCase
             'revenue' => [
                 'Custom' => 'revenue',
                 'Q1-2023' => 125000,
-                'Q2-2023' => 138000
-            ]
+                'Q2-2023' => 138000,
+            ],
         ];
 
         $this->assertEquals($expected, $result);
@@ -138,7 +144,7 @@ class IterableTransposerTest extends TestCase
     {
         $data = [
             'A' => ['x' => 1, 'y' => 2],
-            'B' => ['x' => 3] // 'y' missing
+            'B' => ['x' => 3], // 'y' missing
         ];
 
         $transposer = new IterableTransposer('Field');
@@ -148,13 +154,13 @@ class IterableTransposerTest extends TestCase
             'x' => [
                 'Field' => 'x',
                 'A' => 1,
-                'B' => 3
+                'B' => 3,
             ],
             'y' => [
                 'Field' => 'y',
                 'A' => 2,
-                'B' => null // Missing 'y' in 'B'
-            ]
+                'B' => null, // Missing 'y' in 'B'
+            ],
         ];
         $this->assertEquals($expected, $result);
     }
@@ -164,7 +170,7 @@ class IterableTransposerTest extends TestCase
     {
         $data = new \ArrayObject([
             'Q1-2023' => ['revenue' => 125000],
-            'Q2-2023' => ['revenue' => 138000]
+            'Q2-2023' => ['revenue' => 138000],
         ]);
 
         $transposer = new IterableTransposer('Metric');
@@ -174,8 +180,8 @@ class IterableTransposerTest extends TestCase
             'revenue' => [
                 'Metric' => 'revenue',
                 'Q1-2023' => 125000,
-                'Q2-2023' => 138000
-            ]
+                'Q2-2023' => 138000,
+            ],
         ];
 
         $this->assertEquals($expected, $result);
@@ -186,7 +192,7 @@ class IterableTransposerTest extends TestCase
     {
         $data = new \ArrayIterator([
             'Q1-2023' => ['revenue' => 125000],
-            'Q2-2023' => ['revenue' => 138000]
+            'Q2-2023' => ['revenue' => 138000],
         ]);
 
         $transposer = new IterableTransposer('Metric');
@@ -196,8 +202,8 @@ class IterableTransposerTest extends TestCase
             'revenue' => [
                 'Metric' => 'revenue',
                 'Q1-2023' => 125000,
-                'Q2-2023' => 138000
-            ]
+                'Q2-2023' => 138000,
+            ],
         ];
 
         $this->assertEquals($expected, $result);
@@ -212,15 +218,15 @@ class IterableTransposerTest extends TestCase
                 'int_field' => 100,
                 'float_field' => 99.9,
                 'bool_field' => true,
-                'null_field' => null
+                'null_field' => null,
             ],
             'Category2' => [
                 'string_field' => 'value2',
                 'int_field' => 200,
                 'float_field' => 199.8,
                 'bool_field' => false,
-                'null_field' => null
-            ]
+                'null_field' => null,
+            ],
         ];
 
         $transposer = new IterableTransposer('Type');
@@ -266,13 +272,13 @@ class IterableTransposerTest extends TestCase
             'Cat1' => [
                 'z_field' => 1,
                 'a_field' => 2,
-                'm_field' => 3
+                'm_field' => 3,
             ],
             'Cat2' => [
                 'z_field' => 4,
                 'a_field' => 5,
-                'm_field' => 6
-            ]
+                'm_field' => 6,
+            ],
         ];
 
         $transposer = new IterableTransposer();
@@ -288,7 +294,7 @@ class IterableTransposerTest extends TestCase
     {
         $data = [
             2 => ['field1' => 'value1'],
-            'string_key' => ['field1' => 'value2']
+            'string_key' => ['field1' => 'value2'],
         ];
 
         $transposer = new IterableTransposer('Label');

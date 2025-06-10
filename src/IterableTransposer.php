@@ -1,7 +1,12 @@
 <?php
 
-namespace tomkyle\Transposer;
+/**
+ * This file is part of tomkyle/transposer
+ *
+ * A PHP library for transposing arrays and objects.
+ */
 
+namespace tomkyle\Transposer;
 
 /**
  * Transposes two-dimensional associative arrays.
@@ -42,7 +47,7 @@ class IterableTransposer
      * Optional label for the first column header
      */
     public function __construct(
-        private readonly ?string $label = null
+        private readonly ?string $label = null,
     ) {}
 
     /**
@@ -71,7 +76,7 @@ class IterableTransposer
 
         return array_combine($fields, array_map(
             fn(string $field) => $this->extractRow($field, $inputArr, $label),
-            $fields
+            $fields,
         ));
     }
 
