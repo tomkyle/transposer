@@ -1,8 +1,17 @@
 <?php
 $header = <<<EOF
-tomkyle/transposer
+This file is part of {{name}}
 
+{{description}}
 EOF;
+
+$info = json_decode(file_get_contents(__DIR__ . '/composer.json'), true);
+
+$header = trim(str_replace(
+    ['{{name}}', '{{description}}' ],
+    [$info['name'], $info['description'] ?? null],
+    $header
+));
 
 $finder = PhpCsFixer\Finder::create()
     ->in([
@@ -12,7 +21,6 @@ $finder = PhpCsFixer\Finder::create()
 
 return (new PhpCsFixer\Config())->setRules([
     '@PER-CS' => true,
-    '@PHP82Migration' => true,
 
     'header_comment' => [
         'comment_type' => 'PHPDoc',
